@@ -16,6 +16,8 @@ export default {
             black: "#09090b",
             white: "#fafafa",
             gray: "#71717a",
+            red: "#FF0000",
+            darkRed: "#8B0000",
         },
         screens: {
             sm: "640px",

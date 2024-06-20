@@ -6,7 +6,7 @@
                     Проверьте штрафы и зарегестрируйтесь в 1 клик
                 </div>
                 <div class="mt-5 flex justify-between">
-                    <div class="w-80">
+                    <div style="width: 400px">
                         <div class="text-xs mb-1">Номер автомобиля</div>
                         <input
                             class="h-10 w-full pl-2 border-2 rounded-lg"
@@ -40,6 +40,7 @@
                     <button
                         class="ml-5 h-10 px-5 border-2 rounded-lg bg-white hover:bg-gray"
                         style="border-color: #0584fe"
+                        @click="openDialog"
                     >
                         <Icon name="ant-design:youtube-outlined" size="30px" style="color: #1253a2"></Icon>
                         О сервисе <span class="text-secondary">(1 мин. 20 сек)</span>
@@ -70,13 +71,9 @@
         <div class="flex flex-col justify-center mt-20 mb-5">
             <div class="text-center text-3xl font-bold">Документы</div>
             <div class="mt-10 pb-5">
-                <swiper :navigation="true" :modules="modules">
-                    <swiper-slide
-                        v-for="documentsStack in documents"
-                        style="display: flex; justify-content: space-between"
-                    >
+                <swiper :navigation="true" :modules="modules" :slides-per-view="3">
+                    <swiper-slide v-for="document in documents">
                         <CardsDocument
-                            v-for="document in documentsStack"
                             :name="document.name"
                             :text="document.text"
                             :link="document.link"
@@ -84,12 +81,7 @@
                     </swiper-slide>
                 </swiper>
             </div>
-            <div class="mt-10 w-full flex flex-wrap justify-between">
-                <div class="w-full flex justify-center items-center h-5 mt-3">
-                    <div class="h-5 w-5 mx-1" style="border-radius: 50%; background-color: #0584fe"></div>
-                    <div class="h-2 w-2 mx-1" style="border-radius: 50%; background-color: #d9d9d9"></div>
-                </div>
-            </div>
+            <DialogVue v-show="isShowModal" :show="isShowModal" @close="closeDialog"> </DialogVue>
         </div>
     </div>
 </template>
@@ -98,7 +90,6 @@
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/navigation";
-// import required modules
 import { Navigation } from "swiper/modules";
 
 const modules = [Navigation];
@@ -106,6 +97,13 @@ const modules = [Navigation];
 const carNumber = ref("");
 const region = ref("");
 const certificate = ref("");
+const isShowModal = ref(false);
+const openDialog = () => {
+    isShowModal.value = true;
+};
+const closeDialog = () => {
+    isShowModal.value = false;
+};
 
 const cards = ref([
     {
@@ -144,42 +142,39 @@ const cards = ref([
 ]);
 
 const documents = ref([
-    [
-        {
-            name: "Лицензионный договор",
-            text: "Механизм разбрасывания веерного типа приводится в действие от колес тележки, отличается простой и надежной конструкцией, не нуждается в смазке.",
-            link: "/document/1",
-        },
-        {
-            name: "Политика обработки персональных данных",
-            text: "Радиус разброса ПГМ составляет до 3 метров и может регулироваться.",
-            link: "/document/2",
-        },
+    {
+        name: "Лицензионный договор",
+        text: "Механизм разбрасывания веерного типа приводится в действие от колес тележки, отличается простой и надежной конструкцией, не нуждается в смазке.",
+        link: "/document/1",
+    },
+    {
+        name: "Политика обработки персональных данных",
+        text: "Радиус разброса ПГМ составляет до 3 метров и может регулироваться.",
+        link: "/document/2",
+    },
 
-        {
-            name: "Информация об оплате",
-            text: "Десятипозиционный переключатель дозировки расположен на ручке тележки и позволяет очень точно регулировать объем рассыпаемого реагента с учетом его массы и фракции.",
-            link: "/document/3",
-        },
-    ],
-    [
-        {
-            name: "Лицензионный договор",
-            text: "Механизм разбрасывания веерного типа приводится в действие от колес тележки, отличается простой и надежной конструкцией, не нуждается в смазке.",
-            link: "/document/1",
-        },
-        {
-            name: "Политика обработки персональных данных",
-            text: "Радиус разброса ПГМ составляет до 3 метров и может регулироваться.",
-            link: "/document/2",
-        },
+    {
+        name: "Информация об оплате",
+        text: "Десятипозиционный переключатель дозировки расположен на ручке тележки и позволяет очень точно регулировать объем рассыпаемого реагента с учетом его массы и фракции.",
+        link: "/document/3",
+    },
 
-        {
-            name: "Информация об оплате",
-            text: "Десятипозиционный переключатель дозировки расположен на ручке тележки и позволяет очень точно регулировать объем рассыпаемого реагента с учетом его массы и фракции.",
-            link: "/document/3",
-        },
-    ],
+    {
+        name: "Лицензионный договор",
+        text: "Механизм разбрасывания веерного типа приводится в действие от колес тележки, отличается простой и надежной конструкцией, не нуждается в смазке.",
+        link: "/document/1",
+    },
+    {
+        name: "Политика обработки персональных данных",
+        text: "Радиус разброса ПГМ составляет до 3 метров и может регулироваться.",
+        link: "/document/2",
+    },
+
+    {
+        name: "Информация об оплате",
+        text: "Десятипозиционный переключатель дозировки расположен на ручке тележки и позволяет очень точно регулировать объем рассыпаемого реагента с учетом его массы и фракции.",
+        link: "/document/3",
+    },
 ]);
 </script>
 
@@ -214,5 +209,20 @@ const documents = ref([
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.active {
+    border-radius: 50%;
+    background-color: #0584fe;
+    height: 20px;
+    width: 20px;
+    margin: 0 4px;
+}
+.inactive {
+    border-radius: 50%;
+    background-color: #d9d9d9;
+    height: 10px;
+    width: 10px;
+    margin: 0 4px;
 }
 </style>
