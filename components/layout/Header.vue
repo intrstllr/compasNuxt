@@ -9,8 +9,11 @@
             "
         >
             <div class="flex items-center relative h-full mx-auto" style="max-width: 1200px">
-                <div class="flex items-center w-1/2 cursor-pointer" to="/index">
-                    <NuxtImg style="width: 120px" src="/logo.jpg" alt="compas logo" />
+                <div class="flex items-center w-1/2 cursor-pointer" >
+                    <NuxtLink to="/">
+                        <NuxtImg style="width: 120px" src="/logo.jpg" alt="compas logo" />
+                    </NuxtLink>
+                    
                     <div v-for="link in links" class="px-3 text-sm text-white">{{ link }}</div>
                 </div>
 

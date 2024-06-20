@@ -2,8 +2,11 @@
 import { defineComponent, reactive, toRef } from "vue";
 
 export default defineComponent({
+
+    props:{
+        video:{type:String}
+    },
     setup() {
-      
     },
     data(){
         return {}
@@ -11,7 +14,6 @@ export default defineComponent({
     methods:{
         close(e:{}) {
             this.$emit('closeDialog')
-            console.log('work')
         }
     }
 });
@@ -21,21 +23,16 @@ export default defineComponent({
 <template>
     <div class="simple-modal">
         <div class="simple-modal-backdrop">
-            <div class="simple-modal-container">
+            <div class="simple-modal-container"  @click="close">
                 <div class="simple-modal-content">
                     <header class="simple-modal-header">
-                        <Icon
-                            @click="close"
-                            name="material-symbols:close-rounded"
-                            size="30px"
-                            style="color: black; cursor: pointer"
-                        ></Icon>
                     </header>
                     <section class="simple-modal-body">
                         <iframe
+                            id="#video"
                             width="560"
                             height="315"
-                            src="https://www.youtube.com/embed/OPGXtL_si1g?si=JAOYgGasytV2h4wF"
+                            :src="$props.video"
                             title="YouTube video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -99,7 +96,7 @@ export default defineComponent({
         padding: 5px 5px;
         border-radius: 5px;
         color: #000;
-        background-color: #fff;
+
         transform: translate(0, 0);
         transition: all 0.3s ease;
         box-sizing: border-box;

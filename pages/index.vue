@@ -76,12 +76,13 @@
                         <CardsDocument
                             :name="document.name"
                             :text="document.text"
-                            :link="document.link"
-                        ></CardsDocument>
+                            :id="document.id"
+                    ></CardsDocument>
                     </swiper-slide>
                 </swiper>
             </div>
-            <DialogVue v-show="isShowModal" :show="isShowModal" @closeDialog="closeDialog"> </DialogVue>
+            <DialogsDialogVue v-show="isShowModal" :show="isShowModal" @closeDialog="closeDialog"  :video="video"> </DialogsDialogVue>
+
         </div>
     </div>
 </template>
@@ -98,10 +99,13 @@ const carNumber = ref("");
 const region = ref("");
 const certificate = ref("");
 const isShowModal = ref(false);
+const video = ref('')
 const openDialog = () => {
+    video.value = 'https://www.youtube.com/embed/OPGXtL_si1g?si=JAOYgGasytV2h4wF'
     isShowModal.value = true;
 };
 const closeDialog = () => {
+    video.value = ''
     isShowModal.value = false;
 };
 
@@ -145,35 +149,35 @@ const documents = ref([
     {
         name: "Лицензионный договор",
         text: "Механизм разбрасывания веерного типа приводится в действие от колес тележки, отличается простой и надежной конструкцией, не нуждается в смазке.",
-        link: "/document/1",
+        id: 1,
     },
     {
         name: "Политика обработки персональных данных",
         text: "Радиус разброса ПГМ составляет до 3 метров и может регулироваться.",
-        link: "/document/2",
+        id: 2,
     },
 
     {
         name: "Информация об оплате",
         text: "Десятипозиционный переключатель дозировки расположен на ручке тележки и позволяет очень точно регулировать объем рассыпаемого реагента с учетом его массы и фракции.",
-        link: "/document/3",
+        id: 3,
     },
 
     {
         name: "Лицензионный договор",
         text: "Механизм разбрасывания веерного типа приводится в действие от колес тележки, отличается простой и надежной конструкцией, не нуждается в смазке.",
-        link: "/document/1",
+        id: 1,
     },
     {
         name: "Политика обработки персональных данных",
         text: "Радиус разброса ПГМ составляет до 3 метров и может регулироваться.",
-        link: "/document/2",
+        id: 2,
     },
 
     {
         name: "Информация об оплате",
         text: "Десятипозиционный переключатель дозировки расположен на ручке тележки и позволяет очень точно регулировать объем рассыпаемого реагента с учетом его массы и фракции.",
-        link: "/document/3",
+        id: 3,
     },
 ]);
 </script>

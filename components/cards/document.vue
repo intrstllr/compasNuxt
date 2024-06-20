@@ -14,9 +14,10 @@
             {{ props.text }}
         </div>
         <div class="px-4 py-3 text-sm text-white">
-            <!-- <nuxt-link  :to="{ path: props.link   }">
-          <button class=" rounded-xl  h-10 px-5 w-full  bg-primary hover:bg-secondary">Перейти</button> 
-        </nuxt-link> -->
+            
+        <NuxtLink :to="`/document/` + props.id">
+            <button class=" rounded-xl  h-10 px-5 w-full  bg-primary hover:bg-secondary">Перейти</button> 
+        </NuxtLink>
         </div>
     </div>
 </template>
@@ -25,7 +26,7 @@
 const props = defineProps({
     name: { type: String, required: true },
     text: { type: String, required: true },
-    link: { type: String, required: true },
+    id: { type: Number, required: true },
 });
 </script>
 
