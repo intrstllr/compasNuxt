@@ -81,7 +81,7 @@
                     </swiper-slide>
                 </swiper>
             </div>
-            <DialogVue v-show="isShowModal" :show="isShowModal" @close="closeDialog"> </DialogVue>
+            <DialogVue v-show="isShowModal" :show="isShowModal" @closeDialog="closeDialog"> </DialogVue>
         </div>
     </div>
 </template>

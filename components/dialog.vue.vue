@@ -3,13 +3,19 @@ import { defineComponent, reactive, toRef } from "vue";
 
 export default defineComponent({
     setup() {
-        function close() {}
+      
     },
+    data(){
+        return {}
+    },
+    methods:{
+        close(e:{}) {
+            this.$emit('closeDialog')
+            console.log('work')
+        }
+    }
 });
 
-const emit = defineEmits<{
-    close: [];
-}>();
 </script>
 
 <template>
@@ -19,7 +25,7 @@ const emit = defineEmits<{
                 <div class="simple-modal-content">
                     <header class="simple-modal-header">
                         <Icon
-                            @click=""
+                            @click="close"
                             name="material-symbols:close-rounded"
                             size="30px"
                             style="color: black; cursor: pointer"
