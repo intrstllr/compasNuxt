@@ -4,7 +4,7 @@
     <section>
         <LayoutHeader></LayoutHeader>
         <div>
-            <NuxtPage style="max-width: 1280px" />
+            <NuxtPage style="max-width: 1200px" />
         </div>
     </section>
 </template>
