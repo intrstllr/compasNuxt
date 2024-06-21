@@ -4,7 +4,8 @@
             <div class="flex items-center">
                 <div class="flex items-center" v-for="(link, key) in linkHistory">
                     <div class="text-sm" :class="key == linkHistory.length - 1 ? ` text-gray` : null">
-                        {{ link }}
+                      <NuxtLink :to="link.url">         {{ link.name }}</NuxtLink> 
+             
                     </div>
                     <div class="pointer" v-if="key != linkHistory.length - 1"></div>
                 </div>
@@ -60,14 +61,14 @@ const allDocuments: document[] = [
         id: 3,
     },
 ];
-const linkHistory = ref(["Главная страница", "Документы"]);
+const linkHistory = ref([{name:"Главная страница",url:'/'}, {name:"Документы",url:'/document'}]);
 const route = useRoute();
 const document = ref({ name: "" });
 
 function getdocumentName() {
     document.value = allDocuments.filter((obj) => obj.id === Number(route.params.id))[0];
     let docData = Object.assign(document.value);
-    linkHistory.value.push(docData.name);
+    linkHistory.value.push(docData);
 }
 
 onMounted(() => {
