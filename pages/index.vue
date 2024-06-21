@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-20 flex flex-col mx-auto" style="max-width: 1200px">
+    <div class="mt-20 flex flex-col mx-auto w-full">
         <div class="flex flex-row justify-between w-full">
             <div class="flex flex-col" style="width: 620px">
                 <div class="font-bold" style="font-size: 41px">
@@ -10,7 +10,7 @@
                         <div class="text-xs mb-1">Номер автомобиля</div>
                         <input
                             class="h-10 w-full pl-2 border-2 rounded-lg"
-                            style="border-color: #bcbcbc"
+                            :style="!errorFrom.carNumber ? `border-color: #bcbcbc` : `border-color:#FF0000`"
                             v-model="carNumber"
                         />
                     </div>
@@ -19,7 +19,7 @@
                         <input
                             class="h-10 w-full pl-2 border-2 rounded-lg"
                             v-model="region"
-                            style="border-color: #bcbcbc"
+                            :style="!errorFrom.region ? `border-color: #bcbcbc` : `border-color:#FF0000`"
                         />
                     </div>
                 </div>
@@ -29,11 +29,15 @@
                     <input
                         class="h-10 w-full pl-2 border-2 rounded-lg"
                         v-model="certificate"
-                        style="border-color: #bcbcbc"
+                        :style="!errorFrom.certificate ? `border-color: #bcbcbc` : `border-color:#FF0000`"
                     />
                 </div>
                 <div class="w-full mt-5 flex">
-                    <button class="rounded-xl h-10 px-5 bg-primary hover:bg-secondary" style="color: white">
+                    <button
+                        class="rounded-xl h-10 px-5 bg-primary hover:bg-secondary"
+                        @click="checkFine"
+                        style="color: white"
+                    >
                         Проверить штрафы
                         <Icon name="material-symbols-light:arrow-right-alt" size="30px"></Icon>
                     </button>
@@ -77,12 +81,17 @@
                             :name="document.name"
                             :text="document.text"
                             :id="document.id"
-                    ></CardsDocument>
+                        ></CardsDocument>
                     </swiper-slide>
                 </swiper>
             </div>
-            <DialogsDialogVue v-show="isShowModal" :show="isShowModal" @closeDialog="closeDialog"  :video="video"> </DialogsDialogVue>
-
+            <DialogsDialogVue
+                v-show="isShowModal"
+                :show="isShowModal"
+                @closeDialog="closeDialog"
+                :video="video"
+            >
+            </DialogsDialogVue>
         </div>
     </div>
 </template>
@@ -99,13 +108,14 @@ const carNumber = ref("");
 const region = ref("");
 const certificate = ref("");
 const isShowModal = ref(false);
-const video = ref('')
+const video = ref("");
+const errorFrom = ref({ carNumber: false, region: false, certificate: false });
 const openDialog = () => {
-    video.value = 'https://www.youtube.com/embed/OPGXtL_si1g?si=JAOYgGasytV2h4wF'
+    video.value = "https://www.youtube.com/embed/OPGXtL_si1g?si=JAOYgGasytV2h4wF";
     isShowModal.value = true;
 };
 const closeDialog = () => {
-    video.value = ''
+    video.value = "";
     isShowModal.value = false;
 };
 
@@ -180,6 +190,14 @@ const documents = ref([
         id: 3,
     },
 ]);
+
+function checkFine() {
+    carNumber.value.length != 0 ? (errorFrom.value.carNumber = false) : (errorFrom.value.carNumber = true);
+    region.value.length != 0 ? (errorFrom.value.region = false) : (errorFrom.value.region = true);
+    certificate.value.length != 0
+        ? (errorFrom.value.certificate = false)
+        : (errorFrom.value.certificate = true);
+}
 </script>
 
 <style>
