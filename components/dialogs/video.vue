@@ -2,31 +2,27 @@
 import { defineComponent, reactive, toRef } from "vue";
 
 export default defineComponent({
-
-    props:{
-        video:{type:String}
+    props: {
+        video: { type: String },
     },
-    setup() {
+    setup() {},
+    data() {
+        return {};
     },
-    data(){
-        return {}
+    methods: {
+        close(e: {}) {
+            this.$emit("closeDialog");
+        },
     },
-    methods:{
-        close(e:{}) {
-            this.$emit('closeDialog')
-        }
-    }
 });
-
 </script>
 
 <template>
     <div class="simple-modal">
         <div class="simple-modal-backdrop">
-            <div class="simple-modal-container"  @click="close">
+            <div class="simple-modal-container" @click="close">
                 <div class="simple-modal-content">
-                    <header class="simple-modal-header">
-                    </header>
+                    <header class="simple-modal-header"></header>
                     <section class="simple-modal-body">
                         <iframe
                             id="#video"

@@ -1,12 +1,12 @@
 <template>
     <div class="mt-20 flex flex-col mx-auto w-full">
         <div class="flex flex-row justify-between w-full">
-            <div class="flex flex-col" style="width: 620px">
-                <div class="font-bold" style="font-size: 41px">
+            <div class="flex flex-col px-2" style="max-width: 620px">
+                <div class="font-bold text-4xl laptop:text-2xl tablet:text-xl">
                     Проверьте штрафы и зарегестрируйтесь в 1 клик
                 </div>
                 <div class="mt-5 flex justify-between">
-                    <div style="width: 400px">
+                    <div class="w-2/3 mx-2">
                         <div class="text-xs mb-1">Номер автомобиля</div>
                         <input
                             class="h-10 w-full pl-2 border-2 rounded-lg"
@@ -14,7 +14,7 @@
                             v-model="carNumber"
                         />
                     </div>
-                    <div class="lg::w-64">
+                    <div class="w-1/3 mx-2">
                         <div class="text-xs mb-1">Регион</div>
                         <input
                             class="h-10 w-full pl-2 border-2 rounded-lg"
@@ -23,7 +23,7 @@
                         />
                     </div>
                 </div>
-                <div class="mt-3">
+                <div class="mt-3 w-full px-2">
                     <div class="text-xs mb-1">Свидетельство о регистрации ТС</div>
 
                     <input
@@ -34,12 +34,12 @@
                 </div>
                 <div class="w-full mt-5 flex">
                     <button
-                        class="rounded-xl h-10 px-5 bg-primary hover:bg-secondary"
+                        class="rounded-xl h-10 px-5 tablet: text-xs bg-primary hover:bg-secondary"
                         @click="checkFine"
                         style="color: white"
                     >
-                        Проверить штрафы
-                        <Icon name="material-symbols-light:arrow-right-alt" size="30px"></Icon>
+                        <span> Проверить штрафы</span>
+                        <Icon name="material-symbols-light:arrow-right-alt" class=""></Icon>
                     </button>
                     <button
                         class="ml-5 h-10 px-5 border-2 rounded-lg bg-white hover:bg-gray"
@@ -47,7 +47,8 @@
                         @click="openDialog"
                     >
                         <Icon name="ant-design:youtube-outlined" size="30px" style="color: #1253a2"></Icon>
-                        О сервисе <span class="text-secondary">(1 мин. 20 сек)</span>
+                        <span> О сервисе</span>
+                        <span class="text-secondary mobile:text-xs">(1 мин. 20 сек)</span>
                     </button>
                 </div>
                 <span class="text-xs mt-4" style="color: #8f8f8f">
