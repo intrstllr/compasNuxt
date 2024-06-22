@@ -50,6 +50,10 @@
                         <span> О сервисе</span>
                         <span class="text-secondary mobile:text-xs">(1 мин. 20 сек)</span>
                     </button>
+                    <div class="text-center flex text-xl items-center" v-if="successForm">
+                        <Icon name="material-symbols:check-circle" size="24px" class="text-green"></Icon>
+                        Данные успешно отправлены
+                    </div>
                 </div>
                 <span class="text-xs mt-4" style="color: #8f8f8f">
                     Нажимая «Проверить штрафы» вы соглашаетесь с политикой обработки персональных данных и
@@ -107,6 +111,7 @@ const isShowModal = ref(false);
 const video = ref("");
 const errorFrom = ref({ carNumber: false, region: false, certificate: false });
 const countCards = ref(3);
+const successForm = ref(false);
 
 const openDialog = () => {
     video.value = "https://www.youtube.com/embed/OPGXtL_si1g?si=JAOYgGasytV2h4wF";
@@ -195,6 +200,10 @@ function checkFine() {
     certificate.value.length != 0
         ? (errorFrom.value.certificate = false)
         : (errorFrom.value.certificate = true);
+    successForm.value = true;
+    if (!errorFrom.value.carNumber && !errorFrom.value.region && !errorFrom.value.certificate) {
+        setInterval(() => (successForm.value = false), 2000);
+    }
 }
 </script>
 

@@ -18,6 +18,7 @@ export default {
             gray: "#8F8F8F",
             red: "#FF0000",
             darkRed: "#8B0000",
+            green: "#00ff00",
         },
         screens: {
             sm: "640px",
