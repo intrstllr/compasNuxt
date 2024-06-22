@@ -1,7 +1,13 @@
 <template>
     <div
-        class="w-96 flex items-center justify-center max-h-64 min-h-40 mx-2 mt-5"
-        style="background-color: #fbfcfd; border-radius: 10px; border-color: #eeeff1; border-width: 2px"
+        class="flex items-center justify-center max-h-64 min-h-40 mx-2 mt-5"
+        style="
+            background-color: #fbfcfd;
+            border-radius: 10px;
+            border-color: #eeeff1;
+            border-width: 2px;
+            width: 350px;
+        "
     >
         <div class="px-4">
             <Icon :name="props.iconName" size="60px" style="color: #1253a2"></Icon>

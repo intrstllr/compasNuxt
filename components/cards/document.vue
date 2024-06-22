@@ -14,10 +14,9 @@
             {{ props.text }}
         </div>
         <div class="px-4 py-3 text-sm text-white">
-            
-        <NuxtLink :to="`/document/` + props.id ">
-            <button class=" rounded-xl  h-10 px-5 w-full  bg-primary hover:bg-secondary">Перейти</button> 
-        </NuxtLink>
+            <NuxtLink :to="`/document/` + props.id">
+                <button class="rounded-xl h-10 px-5 w-full bg-primary hover:bg-secondary">Перейти</button>
+            </NuxtLink>
         </div>
     </div>
 </template>

@@ -1,8 +1,8 @@
 <template>
     <div class="mt-20 flex flex-col mx-auto w-full">
         <div class="flex flex-row justify-between w-full">
-            <div class="flex flex-col px-2" style="max-width: 620px">
-                <div class="font-bold text-4xl laptop:text-2xl tablet:text-xl">
+            <div class="form_container">
+                <div class="font-bold text-4xl tablet:text-xl text-center tablet:text-left">
                     Проверьте штрафы и зарегестрируйтесь в 1 клик
                 </div>
                 <div class="mt-5 flex justify-between">
@@ -34,12 +34,12 @@
                 </div>
                 <div class="w-full mt-5 flex">
                     <button
-                        class="rounded-xl h-10 px-5 tablet: text-xs bg-primary hover:bg-secondary"
+                        class="rounded-xl h-10 px-5 bg-primary hover:bg-secondary"
                         @click="checkFine"
                         style="color: white"
                     >
                         <span> Проверить штрафы</span>
-                        <Icon name="material-symbols-light:arrow-right-alt" class=""></Icon>
+                        <Icon name="material-symbols-light:arrow-right-alt" size="30px"></Icon>
                     </button>
                     <button
                         class="ml-5 h-10 px-5 border-2 rounded-lg bg-white hover:bg-gray"
@@ -56,7 +56,7 @@
                     принимаете оферту
                 </span>
             </div>
-            <div>
+            <div class="image_interface">
                 <NuxtImg src="/interface.jpg" style="width: 530px"></NuxtImg>
             </div>
         </div>
@@ -64,7 +64,7 @@
             <div class="text-center text-3xl font-bold">
                 Плюсы использования сервиса «Компас» для анализа штрафов
             </div>
-            <div class="mt-10 w-full flex flex-wrap">
+            <div class="mt-10 w-full flex flex-wrap tablet:justify-around">
                 <CardsPlus
                     v-for="card in cards"
                     :iconName="card.iconName"
@@ -76,7 +76,7 @@
         <div class="flex flex-col justify-center mt-20 mb-5">
             <div class="text-center text-3xl font-bold">Документы</div>
             <div class="mt-10 pb-5">
-                <swiper :navigation="true" :modules="modules" :slides-per-view="3">
+                <swiper :navigation="true" :modules="modules" :slides-per-view="countCards">
                     <swiper-slide v-for="document in documents">
                         <CardsDocument
                             :name="document.name"
@@ -86,13 +86,8 @@
                     </swiper-slide>
                 </swiper>
             </div>
-            <DialogsDialogVue
-                v-show="isShowModal"
-                :show="isShowModal"
-                @closeDialog="closeDialog"
-                :video="video"
-            >
-            </DialogsDialogVue>
+            <DialogsVideo v-show="isShowModal" :show="isShowModal" @closeDialog="closeDialog" :video="video">
+            </DialogsVideo>
         </div>
     </div>
 </template>
@@ -111,6 +106,8 @@ const certificate = ref("");
 const isShowModal = ref(false);
 const video = ref("");
 const errorFrom = ref({ carNumber: false, region: false, certificate: false });
+const countCards = ref(3);
+
 const openDialog = () => {
     video.value = "https://www.youtube.com/embed/OPGXtL_si1g?si=JAOYgGasytV2h4wF";
     isShowModal.value = true;
@@ -247,5 +244,22 @@ function checkFine() {
     height: 10px;
     width: 10px;
     margin: 0 4px;
+}
+
+.image_interface {
+    display: none;
+}
+.form_container {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 8px;
+}
+@media (min-width: 800px) {
+    .image_interface {
+        display: inline-block;
+    }
+    .form_container {
+        width: 100%;
+    }
 }
 </style>
